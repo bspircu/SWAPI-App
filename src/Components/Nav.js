@@ -29,6 +29,9 @@ function Nav() {
         <Link style={linkStyle} to="/Vehicles/">
           <li>Vehicles</li>
         </Link>
+        <Link style={linkStyle} to="/Films/">
+          <li>Films</li>
+        </Link>
       </ul>
     </nav>
   );

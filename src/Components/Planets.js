@@ -13,6 +13,7 @@ function Planets() {
 
   const fetchPlanets = async () => {
     const data = await fetcher('https://swapi.co/api/planets/');
+    console.log(data);
     setAllPlanets(data);
   };
 

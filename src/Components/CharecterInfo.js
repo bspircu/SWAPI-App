@@ -1,4 +1,5 @@
 import React from 'react';
+import Homeworld from './ComponentLinks/Homeworld';
 
 function CharacterInfo({
   name,
@@ -10,6 +11,10 @@ function CharacterInfo({
   skin_color,
   mass,
   homeworld,
+  films,
+  species,
+  starships,
+  vehicles,
 }) {
   return (
     <div>
@@ -23,7 +28,10 @@ function CharacterInfo({
       <h1>Skin Color: {skin_color}</h1>
       <h1>Brith Year: {birth_year}</h1>
       <br />
-      <h1>Home World: {homeworld}</h1>
+      <h1>
+        Home World:
+        <Homeworld url={homeworld} />
+      </h1>
     </div>
   );
 }

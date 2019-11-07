@@ -13,6 +13,7 @@ function Characters() {
 
   const fetchPeople = async () => {
     const data = await fetcher('https://swapi.co/api/people/');
+    // console.log(data);
     setAllCharacters(data);
   };
 
