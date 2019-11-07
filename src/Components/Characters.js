@@ -24,9 +24,7 @@ function Characters() {
     <Switch>
       <Route path="/Characters/:id">
         {({ match }) => {
-          console.log(match);
           const character = allCharacters.results[match.params.id];
-          console.log(character);
           return <CharacterInfo {...character} />;
         }}
       </Route>

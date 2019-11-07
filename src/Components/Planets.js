@@ -28,9 +28,7 @@ function Planets() {
       <Switch>
         <Route path="/Planets/:id">
           {({ match }) => {
-            console.log(match);
             const planet = allPlanets.results[match.params.id];
-            console.log(planet);
             return <PlanetsInfo {...planet} />;
           }}
         </Route>

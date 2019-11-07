@@ -25,9 +25,7 @@ function Starships() {
       <Switch>
         <Route path="/Starships/:id">
           {({ match }) => {
-            console.log(match);
             const starship = allStarships.results[match.params.id];
-            console.log(starship);
             return <StarshipsInfo {...starship} />;
           }}
         </Route>

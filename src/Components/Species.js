@@ -25,9 +25,7 @@ function Species() {
       <Switch>
         <Route path="/Species/:id">
           {({ match }) => {
-            console.log(match);
             const species = allSpecies.results[match.params.id];
-            console.log(species);
             return <SpeciesInfo {...species} />;
           }}
         </Route>

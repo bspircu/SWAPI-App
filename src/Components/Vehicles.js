@@ -25,9 +25,7 @@ function Vehicles() {
       <Switch>
         <Route path="/Vehicles/:id">
           {({ match }) => {
-            console.log(match);
             const vehicle = allVehicles.results[match.params.id];
-            console.log(vehicle);
             return <VehiclesInfo {...vehicle} />;
           }}
         </Route>
