@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import VehiclesInfo from './VehiclesInfo';
 import Pagination from './Pagination';
+import { fetcher } from '../fetcher';
 
 function Vehicles() {
   useEffect(() => {
@@ -11,10 +12,8 @@ function Vehicles() {
   const [allVehicles, setAllVehicles] = useState({ results: [] });
 
   const fetchVehicles = async () => {
-    const data = await fetch('https://swapi.co/api/vehicles/');
-    const vehicles = await data.json();
-    console.log(vehicles);
-    setAllVehicles(vehicles);
+    const data = await fetcher('https://swapi.co/api/vehicles/');
+    setAllVehicles(data);
   };
 
   const linkStyle = {

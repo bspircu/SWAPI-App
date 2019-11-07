@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import SpeciesInfo from './SpeciesInfo';
 import Pagination from './Pagination';
+import { fetcher } from '../fetcher';
 
 function Species() {
   useEffect(() => {
@@ -11,10 +12,8 @@ function Species() {
   const [allSpecies, setAllSpecies] = useState({ results: [] });
 
   const fetchSpecies = async () => {
-    const data = await fetch('https://swapi.co/api/species/');
-    const species = await data.json();
-    console.log(species);
-    setAllSpecies(species);
+    const data = await fetcher('https://swapi.co/api/species/');
+    setAllSpecies(data);
   };
 
   const linkStyle = {

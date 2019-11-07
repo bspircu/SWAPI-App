@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import StarshipsInfo from './StarshipsInfo';
 import Pagination from './Pagination';
+import { fetcher } from '../fetcher';
 
 function Starships() {
   useEffect(() => {
@@ -11,10 +12,8 @@ function Starships() {
   const [allStarships, setAllStarships] = useState({ results: [] });
 
   const fetchStarships = async () => {
-    const data = await fetch('https://swapi.co/api/starships/');
-    const starships = await data.json();
-    console.log(starships);
-    setAllStarships(starships);
+    const data = await fetcher('https://swapi.co/api/starships/');
+    setAllStarships(data);
   };
 
   const linkStyle = {
