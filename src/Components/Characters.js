@@ -9,11 +9,10 @@ function Characters() {
     fetchPeople();
   }, []);
 
-  const [allCharacters, setAllCharacters] = useState({ results: [] });
+  const [allCharacters, setAllCharacters] = useState(null);
 
   const fetchPeople = async () => {
     const data = await fetcher('https://swapi.co/api/people/');
-    // console.log(data);
     setAllCharacters(data);
   };
 
@@ -31,21 +30,27 @@ function Characters() {
       </Route>
 
       <Route path="/Characters">
-        {() => [
-          ...allCharacters.results.map((person, index) => (
-            <h1 key={person.url}>
-              <Link style={linkStyle} to={`/Characters/${index}`}>
-                {person.name}
-              </Link>
-            </h1>
-          )),
-          <Pagination
-            previous={allCharacters.previous}
-            next={allCharacters.next}
-            setState={setAllCharacters}
-            key="pagination"
-          />,
-        ]}
+        {() =>
+          allCharacters ? (
+            [
+              ...allCharacters.results.map((person, index) => (
+                <h1 key={person.url}>
+                  <Link style={linkStyle} to={`/Characters/${index}`}>
+                    {person.name}
+                  </Link>
+                </h1>
+              )),
+              <Pagination
+                previous={allCharacters.previous}
+                next={allCharacters.next}
+                setState={setAllCharacters}
+                key="pagination"
+              />,
+            ]
+          ) : (
+            <h1>Loading...</h1>
+          )
+        }
       </Route>
     </Switch>
   );

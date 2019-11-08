@@ -9,47 +9,62 @@ function Planets() {
     fetchPlanets();
   }, []);
 
-  const [allPlanets, setAllPlanets] = useState({ results: [] });
+  const [allPlanets, setAllPlanets] = useState(null);
 
   const fetchPlanets = async () => {
     const data = await fetcher('https://swapi.co/api/planets/');
     console.log(data);
-    setAllPlanets(data);
+    augmentPlanets(data);
+  };
+
+  // augmenter takes data and adds id prop based on url
+  //makes pushing data into pagination component possible.
+  const augmentPlanets = data => {
+    const dataWithIds = {
+      ...data,
+      results: data.results.map(planet => {
+        const id = /\d+/.exec(planet.url)[0];
+        return { ...planet, id };
+      }),
+    };
+    console.log(dataWithIds);
+    setAllPlanets(dataWithIds);
   };
 
   const linkStyle = {
     color: 'yellow',
   };
 
-  // const currentPage = allPlanets.next ? /\d+/.exec(allPlanets.next)[0] - 1 : 1;
-  // console.log(currentPage);
-
   return (
     <div>
       <Switch>
         <Route path="/Planets/:id">
           {({ match }) => {
-            const planet = allPlanets.results[match.params.id];
-            return <PlanetsInfo {...planet} />;
+            return <PlanetsInfo id={match.params.id} />;
           }}
         </Route>
-
         <Route path="/Planets/">
-          {() => [
-            ...allPlanets.results.map((planet, index) => (
-              <h1 key={planet.url}>
-                <Link style={linkStyle} to={`/Planets/${index}`}>
-                  {planet.name}
-                </Link>
-              </h1>
-            )),
-            <Pagination
-              previous={allPlanets.previous}
-              next={allPlanets.next}
-              setState={setAllPlanets}
-              key="pagination"
-            />,
-          ]}
+          {() =>
+            allPlanets ? (
+              [
+                ...allPlanets.results.map(planet => (
+                  <h1 key={planet.url}>
+                    <Link style={linkStyle} to={`/Planets/${planet.id}`}>
+                      {planet.name}
+                    </Link>
+                  </h1>
+                )),
+                <Pagination
+                  previous={allPlanets.previous}
+                  next={allPlanets.next}
+                  setState={augmentPlanets}
+                  key="pagination"
+                />,
+              ]
+            ) : (
+              <h1>Loading...</h1>
+            )
+          }
         </Route>
       </Switch>
     </div>

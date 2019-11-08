@@ -1,4 +1,5 @@
 import React from 'react';
+import Homeworld from './ComponentLinks/Homeworld';
 
 function FilmsInfo({
   title,
@@ -17,6 +18,13 @@ function FilmsInfo({
       <br />
       <h1>Director: {director}</h1>
       <h1>Producer: {producer}</h1>
+      <br />
+      <h1>
+        Planets:
+        {planets.map(planet => {
+          return <Homeworld url={planet} />;
+        })}
+      </h1>
     </div>
   );
 }
