@@ -46,10 +46,10 @@ function Species() {
           {() =>
             allSpecies ? (
               [
-                ...allSpecies.results.map(species => (
-                  <h1 key={species.url}>
-                    <Link style={linkStyle} to={`/Species/${species.id}`}>
-                      {species.name}
+                ...allSpecies.results.map(oneSpecies => (
+                  <h1 key={oneSpecies.url}>
+                    <Link style={linkStyle} to={`/Species/${oneSpecies.id}`}>
+                      {oneSpecies.name}
                     </Link>
                   </h1>
                 )),
