@@ -12,7 +12,21 @@ function Films() {
 
   const fetchFilms = async () => {
     const data = await fetcher('https://swapi.co/api/films/');
-    setAllFilms(data);
+    augmentFilms(data);
+  };
+
+  // augmenter takes data and adds id prop based on url
+  //makes pushing data into pagination component possible.
+  const augmentFilms = data => {
+    const dataWithIds = {
+      ...data,
+      results: data.results.map(film => {
+        const id = /\d+/.exec(film.url)[0];
+        return { ...film, id };
+      }),
+    };
+    console.log(dataWithIds);
+    setAllFilms(dataWithIds);
   };
 
   const linkStyle = {
@@ -23,11 +37,7 @@ function Films() {
     <Switch>
       <Route path="/Films/:id">
         {({ match }) => {
-          if (allFilms) {
-            const film = allFilms.results[match.params.id];
-            return <FilmsInfo {...film} />;
-          }
-          return <h1>Loading..</h1>;
+          return <FilmsInfo id={match.params.id} />;
         }}
       </Route>
 
@@ -35,9 +45,9 @@ function Films() {
         {() =>
           allFilms ? (
             [
-              ...allFilms.results.map((film, index) => (
+              ...allFilms.results.map(film => (
                 <h1 key={film.url}>
-                  <Link style={linkStyle} to={`/Films/${index}`}>
+                  <Link style={linkStyle} to={`/Films/${film.id}`}>
                     {film.title}
                   </Link>
                 </h1>

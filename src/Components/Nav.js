@@ -9,7 +9,7 @@ function Nav() {
     <nav>
       <Link to="/">
         <img
-          src="https://www.schemecolor.com/wp-content/uploads/Star-Wars-Logo.png"
+          src="https://logos-download.com/wp-content/uploads/2016/09/Star_Wars_logo-1-700x300.png"
           alt=""
         />
       </Link>

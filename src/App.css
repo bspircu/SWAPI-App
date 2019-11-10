@@ -22,6 +22,7 @@ nav {
   align-items: center;
   width: 40%;
   font: white;
+  margin-right: 200px;
 }
 .homePage {
   align-items: center;
@@ -42,4 +43,9 @@ button {
 button:hover {
   background-color: yellow;
   color: black;
+}
+img {
+  max-width: 40%;
+  margin-right: 150px;
+  margin-top: 20px;
 }

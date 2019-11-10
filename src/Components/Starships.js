@@ -9,11 +9,25 @@ function Starships() {
     fetchStarships();
   }, []);
 
-  const [allStarships, setAllStarships] = useState({ results: [] });
+  const [allStarships, setAllStarships] = useState(null);
 
   const fetchStarships = async () => {
     const data = await fetcher('https://swapi.co/api/starships/');
-    setAllStarships(data);
+    augmentStarships(data);
+  };
+
+  // augmenter takes data and adds id prop based on url
+  //makes pushing data into pagination component possible.
+  const augmentStarships = data => {
+    const dataWithIds = {
+      ...data,
+      results: data.results.map(starship => {
+        const id = /\d+/.exec(starship.url)[0];
+        return { ...starship, id };
+      }),
+    };
+    console.log(dataWithIds);
+    setAllStarships(dataWithIds);
   };
 
   const linkStyle = {
@@ -25,27 +39,31 @@ function Starships() {
       <Switch>
         <Route path="/Starships/:id">
           {({ match }) => {
-            const starship = allStarships.results[match.params.id];
-            return <StarshipsInfo {...starship} />;
+            return <StarshipsInfo id={match.params.id} />;
           }}
         </Route>
-
-        <Route path="/Starships">
-          {() => [
-            ...allStarships.results.map((starship, index) => (
-              <h1 key={starship.url}>
-                <Link style={linkStyle} to={`/Starships/${index}`}>
-                  {starship.name}
-                </Link>
-              </h1>
-            )),
-            <Pagination
-              previous={allStarships.previous}
-              next={allStarships.next}
-              setState={setAllStarships}
-              key="pagination"
-            />,
-          ]}
+        <Route path="/Starships/">
+          {() =>
+            allStarships ? (
+              [
+                ...allStarships.results.map(starship => (
+                  <h1 key={starship.url}>
+                    <Link style={linkStyle} to={`/Starships/${starship.id}`}>
+                      {starship.name}
+                    </Link>
+                  </h1>
+                )),
+                <Pagination
+                  previous={allStarships.previous}
+                  next={allStarships.next}
+                  setState={augmentStarships}
+                  key="pagination"
+                />,
+              ]
+            ) : (
+              <h1>Loading...</h1>
+            )
+          }
         </Route>
       </Switch>
     </div>

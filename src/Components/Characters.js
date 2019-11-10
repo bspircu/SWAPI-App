@@ -13,7 +13,21 @@ function Characters() {
 
   const fetchPeople = async () => {
     const data = await fetcher('https://swapi.co/api/people/');
-    setAllCharacters(data);
+    augmentCharacters(data);
+  };
+
+  // augmenter takes data and adds id prop based on url
+  //makes pushing data into pagination component possible.
+  const augmentCharacters = data => {
+    const dataWithIds = {
+      ...data,
+      results: data.results.map(character => {
+        const id = /\d+/.exec(character.url)[0];
+        return { ...character, id };
+      }),
+    };
+    console.log(dataWithIds);
+    setAllCharacters(dataWithIds);
   };
 
   const linkStyle = {
@@ -24,8 +38,7 @@ function Characters() {
     <Switch>
       <Route path="/Characters/:id">
         {({ match }) => {
-          const character = allCharacters.results[match.params.id];
-          return <CharacterInfo {...character} />;
+          return <CharacterInfo id={match.params.id} />;
         }}
       </Route>
 
@@ -33,9 +46,9 @@ function Characters() {
         {() =>
           allCharacters ? (
             [
-              ...allCharacters.results.map((person, index) => (
+              ...allCharacters.results.map(person => (
                 <h1 key={person.url}>
-                  <Link style={linkStyle} to={`/Characters/${index}`}>
+                  <Link style={linkStyle} to={`/Characters/${person.id}`}>
                     {person.name}
                   </Link>
                 </h1>
@@ -43,7 +56,7 @@ function Characters() {
               <Pagination
                 previous={allCharacters.previous}
                 next={allCharacters.next}
-                setState={setAllCharacters}
+                setState={augmentCharacters}
                 key="pagination"
               />,
             ]
