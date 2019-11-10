@@ -26,7 +26,6 @@ function Vehicles() {
         return { ...vehicles, id };
       }),
     };
-    console.log(dataWithIds);
     setAllVehicles(dataWithIds);
   };
 

@@ -12,7 +12,6 @@ function StarshipsInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/starships/${id}`);
     setStarshipInfo(data);
   };
-  console.log(starshipInfo);
   return starshipInfo ? (
     <div>
       <h1>Name: {starshipInfo.name}</h1>

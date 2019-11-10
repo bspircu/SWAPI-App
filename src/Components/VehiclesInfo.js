@@ -12,7 +12,6 @@ function VehiclesInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/vehicles/${id}`);
     setVehicleInfo(data);
   };
-  console.log(vehicleInfo);
   return vehicleInfo ? (
     <div>
       <h1>Name: {vehicleInfo.name}</h1>

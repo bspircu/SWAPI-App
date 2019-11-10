@@ -13,7 +13,6 @@ function CharacterInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/people/${id}`);
     setCharacterInfo(data);
   };
-  console.log(characterInfo);
   return characterInfo ? (
     <div>
       <h1>Name: {characterInfo.name}</h1>

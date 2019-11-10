@@ -26,7 +26,6 @@ function Characters() {
         return { ...character, id };
       }),
     };
-    console.log(dataWithIds);
     setAllCharacters(dataWithIds);
   };
 

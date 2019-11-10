@@ -12,7 +12,6 @@ function PlanetsInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/planets/${id}`);
     setPlanetInfo(data);
   };
-  console.log(planetInfo);
   return planetInfo ? (
     <div>
       <h1>Name: {planetInfo.name}</h1>

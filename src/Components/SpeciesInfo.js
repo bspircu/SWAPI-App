@@ -13,7 +13,6 @@ function SpeciessInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/species/${id}`);
     setSpeciesInfo(data);
   };
-  console.log(speciesInfo);
   return speciesInfo ? (
     <div>
       <h1>Name: {speciesInfo.name}</h1>

@@ -25,7 +25,6 @@ function Films() {
         return { ...film, id };
       }),
     };
-    console.log(dataWithIds);
     setAllFilms(dataWithIds);
   };
 

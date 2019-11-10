@@ -26,7 +26,6 @@ function Species() {
         return { ...oneSpecies, id };
       }),
     };
-    console.log(dataWithIds);
     setAllSpecies(dataWithIds);
   };
 

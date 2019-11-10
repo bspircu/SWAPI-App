@@ -13,7 +13,6 @@ function FilmsInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/films/${id}`);
     setFilmInfo(data);
   };
-  console.log(filmInfo);
   return filmInfo ? (
     <div>
       <h1>Title: {filmInfo.title}</h1>

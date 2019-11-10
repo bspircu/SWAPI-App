@@ -26,7 +26,6 @@ function Starships() {
         return { ...starship, id };
       }),
     };
-    console.log(dataWithIds);
     setAllStarships(dataWithIds);
   };
 

@@ -26,7 +26,6 @@ function Planets() {
         return { ...planet, id };
       }),
     };
-    console.log(dataWithIds);
     setAllPlanets(dataWithIds);
   };
 
