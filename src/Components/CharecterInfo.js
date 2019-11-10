@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { fetcher } from '../fetcher';
 import Homeworld from './ComponentLinks/Homeworld';
+import VehicleInsert from './ComponentLinks/VehiclesInsert';
+import FilmsInsert from './ComponentLinks/FilmsInsert';
+import SpeciesInsert from './ComponentLinks/SpeciesInsert';
+import StarshipInsert from './ComponentLinks/StarshipsInsert';
 
 function CharacterInfo({ id }) {
   useEffect(() => {
@@ -28,6 +32,32 @@ function CharacterInfo({ id }) {
       <h1>
         Home World:
         <Homeworld url={characterInfo.homeworld} />
+      </h1>
+      <br />
+      <h1>
+        Vehicles:
+        {characterInfo.vehicles.map(vehicle => {
+          return <VehicleInsert url={vehicle} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Starships:
+        {characterInfo.starships.map(starship => {
+          return <StarshipInsert url={starship} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Films:
+        {characterInfo.films.map(film => {
+          return <FilmsInsert url={film} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Species:
+        <SpeciesInsert url={characterInfo.species} />
       </h1>
     </div>
   ) : (

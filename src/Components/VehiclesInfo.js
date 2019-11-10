@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetcher } from '../fetcher';
+import CharacterInsert from './ComponentLinks/CharactersInsert';
+import FilmsInsert from './ComponentLinks/FilmsInsert';
 
 function VehiclesInfo({ id }) {
   useEffect(() => {
@@ -27,6 +29,20 @@ function VehiclesInfo({ id }) {
       <h1>Length: {vehicleInfo.length} Meters</h1>
       <h1>Max Atmosphering Speed: {vehicleInfo.max_atmosphering_speed}</h1>
       <h1>Cost In Credits: {vehicleInfo.cost_in_credits}</h1>
+      <br />
+      <h1>
+        Pilots:
+        {vehicleInfo.pilots.map(character => {
+          return <CharacterInsert url={character} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Films:
+        {vehicleInfo.films.map(film => {
+          return <FilmsInsert url={film} />;
+        })}
+      </h1>
     </div>
   ) : (
     <h1>Loading...</h1>

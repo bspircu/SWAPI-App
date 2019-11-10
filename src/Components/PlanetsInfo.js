@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetcher } from '../fetcher';
+import FilmsInsert from './ComponentLinks/FilmsInsert';
+import CharacterInsert from './ComponentLinks/CharactersInsert';
 
 function PlanetsInfo({ id }) {
   useEffect(() => {
@@ -25,6 +27,20 @@ function PlanetsInfo({ id }) {
       <br />
       <h1>Surface Water: {planetInfo.surface_water}%</h1>
       <h1>Terrain: {planetInfo.terrain}</h1>
+      <br />
+      <h1>
+        Residents:
+        {planetInfo.residents.map(charecter => {
+          return <CharacterInsert url={charecter} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Films:
+        {planetInfo.films.map(film => {
+          return <FilmsInsert url={film} />;
+        })}
+      </h1>
     </div>
   ) : (
     <h1>Loading...</h1>

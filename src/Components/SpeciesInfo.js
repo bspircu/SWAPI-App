@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetcher } from '../fetcher';
 import Homeworld from './ComponentLinks/Homeworld';
+import CharacterInsert from './ComponentLinks/CharactersInsert';
+import FilmsInsert from './ComponentLinks/FilmsInsert';
 
 function SpeciessInfo({ id }) {
   useEffect(() => {
@@ -26,9 +28,23 @@ function SpeciessInfo({ id }) {
       <br />
       <h1>Average Lifespan: {speciesInfo.average_lifespan} Years</h1>
       <h1>Average Height: {speciesInfo.average_height} Cm</h1>
+      <br />
       <h1>
         Home World:
         <Homeworld url={speciesInfo.homeworld} />
+      </h1>
+      <brc />
+      <h1>
+        Charecters:
+        {speciesInfo.people.map(character => {
+          return <CharacterInsert url={character} />;
+        })}
+      </h1>
+      <h1>
+        Films:
+        {speciesInfo.films.map(film => {
+          return <FilmsInsert url={film} />;
+        })}
       </h1>
     </div>
   ) : (

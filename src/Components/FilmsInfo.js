@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { fetcher } from '../fetcher';
 import Homeworld from './ComponentLinks/Homeworld';
+import VehicleInsert from './ComponentLinks/VehiclesInsert';
+import CharacterInsert from './ComponentLinks/CharactersInsert';
+import SpeciesInsert from './ComponentLinks/SpeciesInsert';
+import StarshipInsert from './ComponentLinks/StarshipsInsert';
 
 function FilmsInfo({ id }) {
   useEffect(() => {
@@ -27,6 +31,48 @@ function FilmsInfo({ id }) {
         Planets:
         {filmInfo.planets.map(planet => {
           return <Homeworld url={planet} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Vehicles:
+        {filmInfo.vehicles.map(vehicle => {
+          return <VehicleInsert url={vehicle} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Characters:
+        {filmInfo.characters.map(character => {
+          return <CharacterInsert url={character} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Planets:
+        {filmInfo.planets.map(planet => {
+          return <Homeworld url={planet} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Species:
+        {filmInfo.species.map(species => {
+          return <SpeciesInsert url={species} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Starships:
+        {filmInfo.starships.map(starship => {
+          return <StarshipInsert url={starship} />;
+        })}
+      </h1>
+      <br />
+      <h1>
+        Vehicles:
+        {filmInfo.vehicles.map(vehicle => {
+          return <VehicleInsert url={vehicle} />;
         })}
       </h1>
     </div>
