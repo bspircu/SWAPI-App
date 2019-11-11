@@ -21,7 +21,7 @@ function FilmsInsert({ url }) {
   const filmId = film ? getId(film) : null;
   return film ? (
     <Link style={linkStyle} to={`/Films/${filmId}`}>
-      <p>{film.name}</p>
+      <p>{film.title}</p>
     </Link>
   ) : (
     <p>Loading...</p>
