@@ -20,7 +20,7 @@ function SpeciesInsert({ url }) {
   }
   const speciesId = oneSpecies ? getId(oneSpecies) : null;
   return oneSpecies ? (
-    <Link style={linkStyle} to={`/Vehicles/${speciesId}`}>
+    <Link style={linkStyle} to={`/Species/${speciesId}`}>
       <p>{oneSpecies.name}</p>
     </Link>
   ) : (

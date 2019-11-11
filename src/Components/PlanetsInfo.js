@@ -38,7 +38,7 @@ function PlanetsInfo({ id }) {
       <h1>
         Films:
         {planetInfo.films.map(film => {
-          return <FilmsInsert url={film} />;
+          return <FilmsInsert key={1} url={film} />;
         })}
       </h1>
     </div>
