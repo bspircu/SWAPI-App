@@ -35,14 +35,14 @@ function StarshipsInfo({ id }) {
       <h1>
         Pilots:
         {starshipInfo.pilots.map(character => {
-          return <CharacterInsert url={character} />;
+          return <CharacterInsert key={character} url={character} />;
         })}
       </h1>
       <br />
       <h1>
         Films:
         {starshipInfo.films.map(film => {
-          return <FilmsInsert url={film} />;
+          return <FilmsInsert key={film} url={film} />;
         })}
       </h1>
     </div>

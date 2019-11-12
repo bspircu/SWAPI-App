@@ -28,51 +28,37 @@ function FilmsInfo({ id }) {
       <h1>Producer: {filmInfo.producer}</h1>
       <br />
       <h1>
-        Planets:
-        {filmInfo.planets.map(planet => {
-          return <Homeworld url={planet} />;
-        })}
-      </h1>
-      <br />
-      <h1>
-        Vehicles:
-        {filmInfo.vehicles.map(vehicle => {
-          return <VehicleInsert url={vehicle} />;
-        })}
-      </h1>
-      <br />
-      <h1>
         Characters:
         {filmInfo.characters.map(character => {
-          return <CharacterInsert url={character} />;
+          return <CharacterInsert key={character} url={character} />;
         })}
       </h1>
       <br />
       <h1>
         Planets:
         {filmInfo.planets.map(planet => {
-          return <Homeworld url={planet} />;
+          return <Homeworld key={planet} url={planet} />;
         })}
       </h1>
       <br />
       <h1>
         Species:
         {filmInfo.species.map(species => {
-          return <SpeciesInsert url={species} />;
+          return <SpeciesInsert key={species} url={species} />;
         })}
       </h1>
       <br />
       <h1>
         Starships:
         {filmInfo.starships.map(starship => {
-          return <StarshipInsert url={starship} />;
+          return <StarshipInsert key={starship} url={starship} />;
         })}
       </h1>
       <br />
       <h1>
         Vehicles:
         {filmInfo.vehicles.map(vehicle => {
-          return <VehicleInsert url={vehicle} />;
+          return <VehicleInsert key={vehicle} url={vehicle} />;
         })}
       </h1>
     </div>

@@ -31,14 +31,14 @@ function PlanetsInfo({ id }) {
       <h1>
         Residents:
         {planetInfo.residents.map(charecter => {
-          return <CharacterInsert url={charecter} />;
+          return <CharacterInsert key={charecter} url={charecter} />;
         })}
       </h1>
       <br />
       <h1>
         Films:
         {planetInfo.films.map(film => {
-          return <FilmsInsert key={1} url={film} />;
+          return <FilmsInsert key={film} url={film} />;
         })}
       </h1>
     </div>

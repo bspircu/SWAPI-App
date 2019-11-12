@@ -33,14 +33,14 @@ function VehiclesInfo({ id }) {
       <h1>
         Pilots:
         {vehicleInfo.pilots.map(character => {
-          return <CharacterInsert url={character} />;
+          return <CharacterInsert key={character} url={character} />;
         })}
       </h1>
       <br />
       <h1>
         Films:
         {vehicleInfo.films.map(film => {
-          return <FilmsInsert url={film} />;
+          return <FilmsInsert key={film} url={film} />;
         })}
       </h1>
     </div>
