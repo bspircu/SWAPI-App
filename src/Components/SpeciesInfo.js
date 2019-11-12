@@ -35,7 +35,7 @@ function SpeciessInfo({ id }) {
       </h1>
       <brc />
       <h1>
-        Charecters:
+        Characters:
         {speciesInfo.people.map(character => {
           return <CharacterInsert url={character} />;
         })}

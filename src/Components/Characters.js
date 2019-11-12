@@ -3,18 +3,19 @@ import { Link, Switch, Route } from 'react-router-dom';
 import CharacterInfo from './CharecterInfo';
 import Pagination from './Pagination';
 import { fetcher } from '../fetcher';
+import { getId } from '../utilities';
 
 function Characters() {
   useEffect(() => {
     fetchPeople();
-  }, []);
+  }, [fetchPeople]);
 
   const [allCharacters, setAllCharacters] = useState(null);
 
-  const fetchPeople = async () => {
+  async function fetchPeople() {
     const data = await fetcher('https://swapi.co/api/people/');
     augmentCharacters(data);
-  };
+  }
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
@@ -22,7 +23,7 @@ function Characters() {
     const dataWithIds = {
       ...data,
       results: data.results.map(character => {
-        const id = /\d+/.exec(character.url)[0];
+        const id = getId(character);
         return { ...character, id };
       }),
     };

@@ -3,18 +3,19 @@ import { Link, Switch, Route } from 'react-router-dom';
 import StarshipsInfo from './StarshipsInfo';
 import Pagination from './Pagination';
 import { fetcher } from '../fetcher';
+import { getId } from '../utilities';
 
 function Starships() {
   useEffect(() => {
     fetchStarships();
-  }, []);
+  }, [fetchStarships]);
 
   const [allStarships, setAllStarships] = useState(null);
 
-  const fetchStarships = async () => {
+  async function fetchStarships() {
     const data = await fetcher('https://swapi.co/api/starships/');
     augmentStarships(data);
-  };
+  }
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
@@ -22,7 +23,7 @@ function Starships() {
     const dataWithIds = {
       ...data,
       results: data.results.map(starship => {
-        const id = /\d+/.exec(starship.url)[0];
+        const id = getId(starship);
         return { ...starship, id };
       }),
     };

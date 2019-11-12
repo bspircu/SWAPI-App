@@ -17,6 +17,7 @@ function CharacterInfo({ id }) {
     const data = await fetcher(`https://swapi.co/api/people/${id}`);
     setCharacterInfo(data);
   };
+
   return characterInfo ? (
     <div>
       <h1>Name: {characterInfo.name}</h1>
@@ -37,21 +38,21 @@ function CharacterInfo({ id }) {
       <h1>
         Vehicles:
         {characterInfo.vehicles.map(vehicle => {
-          return <VehicleInsert url={vehicle} />;
+          return <VehicleInsert key={vehicle} url={vehicle} />;
         })}
       </h1>
       <br />
       <h1>
         Starships:
         {characterInfo.starships.map(starship => {
-          return <StarshipInsert url={starship} />;
+          return <StarshipInsert key={starship} url={starship} />;
         })}
       </h1>
       <br />
       <h1>
         Films:
         {characterInfo.films.map(film => {
-          return <FilmsInsert url={film} />;
+          return <FilmsInsert key={film} url={film} />;
         })}
       </h1>
       <br />

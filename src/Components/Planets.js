@@ -3,18 +3,19 @@ import { Link, Switch, Route } from 'react-router-dom';
 import PlanetsInfo from './PlanetsInfo';
 import Pagination from './Pagination';
 import { fetcher } from '../fetcher';
+import { getId } from '../utilities';
 
 function Planets() {
   useEffect(() => {
     fetchPlanets();
-  }, []);
+  }, [fetchPlanets]);
 
   const [allPlanets, setAllPlanets] = useState(null);
 
-  const fetchPlanets = async () => {
+  async function fetchPlanets() {
     const data = await fetcher('https://swapi.co/api/planets/');
     augmentPlanets(data);
-  };
+  }
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
@@ -22,7 +23,7 @@ function Planets() {
     const dataWithIds = {
       ...data,
       results: data.results.map(planet => {
-        const id = /\d+/.exec(planet.url)[0];
+        const id = getId(planet);
         return { ...planet, id };
       }),
     };

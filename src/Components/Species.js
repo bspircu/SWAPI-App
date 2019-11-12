@@ -3,18 +3,19 @@ import { Link, Switch, Route } from 'react-router-dom';
 import SpeciesInfo from './SpeciesInfo';
 import Pagination from './Pagination';
 import { fetcher } from '../fetcher';
+import { getId } from '../utilities';
 
 function Species() {
   useEffect(() => {
     fetchSpecies();
-  }, []);
+  }, [fetchSpecies]);
 
   const [allSpecies, setAllSpecies] = useState(null);
 
-  const fetchSpecies = async () => {
+  async function fetchSpecies() {
     const data = await fetcher('https://swapi.co/api/species/');
     augmentSpecies(data);
-  };
+  }
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
@@ -22,7 +23,7 @@ function Species() {
     const dataWithIds = {
       ...data,
       results: data.results.map(oneSpecies => {
-        const id = /\d+/.exec(oneSpecies.url)[0];
+        const id = getId(oneSpecies);
         return { ...oneSpecies, id };
       }),
     };

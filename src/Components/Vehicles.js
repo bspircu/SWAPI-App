@@ -3,18 +3,19 @@ import { Link, Switch, Route } from 'react-router-dom';
 import VehiclesInfo from './VehiclesInfo';
 import Pagination from './Pagination';
 import { fetcher } from '../fetcher';
+import { getId } from '../utilities';
 
 function Vehicles() {
   useEffect(() => {
     fetchVehicles();
-  }, []);
+  }, [fetchVehicles]);
 
   const [allVehicles, setAllVehicles] = useState(null);
 
-  const fetchVehicles = async () => {
+  async function fetchVehicles() {
     const data = await fetcher('https://swapi.co/api/vehicles/');
     augmentVehicles(data);
-  };
+  }
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
@@ -22,7 +23,7 @@ function Vehicles() {
     const dataWithIds = {
       ...data,
       results: data.results.map(vehicles => {
-        const id = /\d+/.exec(vehicles.url)[0];
+        const id = getId(vehicles);
         return { ...vehicles, id };
       }),
     };
