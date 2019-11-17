@@ -8,14 +8,14 @@ import { getId } from '../utilities';
 function Starships() {
   useEffect(() => {
     fetchStarships();
-  }, [fetchStarships]);
+  }, []);
 
   const [allStarships, setAllStarships] = useState(null);
 
-  async function fetchStarships() {
+  const fetchStarships = async () => {
     const data = await fetcher('https://swapi.co/api/starships/');
     augmentStarships(data);
-  }
+  };
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.

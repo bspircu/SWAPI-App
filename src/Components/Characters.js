@@ -8,14 +8,14 @@ import { getId } from '../utilities';
 function Characters() {
   useEffect(() => {
     fetchPeople();
-  }, [fetchPeople]);
+  }, []);
 
   const [allCharacters, setAllCharacters] = useState(null);
 
-  async function fetchPeople() {
+  const fetchPeople = async () => {
     const data = await fetcher('https://swapi.co/api/people/');
     augmentCharacters(data);
-  }
+  };
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
