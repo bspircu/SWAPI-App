@@ -34,12 +34,14 @@ function SpeciessInfo({ id }) {
         <Homeworld url={speciesInfo.homeworld} />
       </h1>
       <brc />
-      <h1>
-        Characters:
-        {speciesInfo.people.map(character => {
-          return <CharacterInsert key={character} url={character} />;
-        })}
-      </h1>
+      {speciesInfo.people.length > 0 && (
+        <h1>
+          Characters:
+          {speciesInfo.people.map(character => {
+            return <CharacterInsert key={character} url={character} />;
+          })}
+        </h1>
+      )}
       <h1>
         Films:
         {speciesInfo.films.map(film => {
