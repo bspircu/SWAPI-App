@@ -7,15 +7,14 @@ import { getId } from '../utilities';
 
 function Vehicles() {
   useEffect(() => {
+    const fetchVehicles = async () => {
+      const data = await fetcher('https://swapi.co/api/vehicles/');
+      augmentVehicles(data);
+    };
     fetchVehicles();
   }, []);
 
   const [allVehicles, setAllVehicles] = useState(null);
-
-  const fetchVehicles = async () => {
-    const data = await fetcher('https://swapi.co/api/vehicles/');
-    augmentVehicles(data);
-  };
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.

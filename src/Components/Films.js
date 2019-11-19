@@ -6,15 +6,14 @@ import { getId } from '../utilities';
 
 function Films() {
   useEffect(() => {
+    const fetchFilms = async () => {
+      const data = await fetcher('https://swapi.co/api/films/');
+      augmentFilms(data);
+    };
     fetchFilms();
   }, []);
 
   const [allFilms, setAllFilms] = useState(null);
-
-  const fetchFilms = async () => {
-    const data = await fetcher('https://swapi.co/api/films/');
-    augmentFilms(data);
-  };
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.

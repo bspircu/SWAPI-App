@@ -11,13 +11,13 @@ function CharacterInsert({ url }) {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetcher(url);
+      setCharacter(data);
+    }
     fetchData();
-  }, []);
+  }, [url]);
 
-  async function fetchData() {
-    const data = await fetcher(url);
-    setCharacter(data);
-  }
   const characterId = character ? getId(character) : null;
   return character ? (
     <Link style={linkStyle} to={`/Characters/${characterId}`}>

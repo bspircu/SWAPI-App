@@ -11,13 +11,13 @@ function Homeworld({ url }) {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetcher(url);
+      setHomePlanet(data);
+    }
     fetchData();
-  }, []);
+  }, [url]);
 
-  async function fetchData() {
-    const data = await fetcher(url);
-    setHomePlanet(data);
-  }
   const planetId = homePlanet ? getId(homePlanet) : null;
   return homePlanet ? (
     <Link style={linkStyle} to={`/Planets/${planetId}`}>

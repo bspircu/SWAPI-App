@@ -11,13 +11,13 @@ function VehicleInsert({ url }) {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetcher(url);
+      setVehicle(data);
+    }
     fetchData();
-  }, []);
+  }, [url]);
 
-  async function fetchData() {
-    const data = await fetcher(url);
-    setVehicle(data);
-  }
   const vehicleId = vehicle ? getId(vehicle) : null;
   return vehicle ? (
     <Link style={linkStyle} to={`/Vehicles/${vehicleId}`}>

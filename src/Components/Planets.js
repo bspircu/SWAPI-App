@@ -7,15 +7,14 @@ import { getId } from '../utilities';
 
 function Planets() {
   useEffect(() => {
+    const fetchPlanets = async () => {
+      const data = await fetcher('https://swapi.co/api/planets/');
+      augmentPlanets(data);
+    };
     fetchPlanets();
   }, []);
 
   const [allPlanets, setAllPlanets] = useState(null);
-
-  const fetchPlanets = async () => {
-    const data = await fetcher('https://swapi.co/api/planets/');
-    augmentPlanets(data);
-  };
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.

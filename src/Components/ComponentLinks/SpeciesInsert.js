@@ -11,13 +11,13 @@ function SpeciesInsert({ url }) {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetcher(url);
+      setOneSpecies(data);
+    }
     fetchData();
-  }, []);
+  }, [url]);
 
-  async function fetchData() {
-    const data = await fetcher(url);
-    setOneSpecies(data);
-  }
   const speciesId = oneSpecies ? getId(oneSpecies) : null;
   return oneSpecies ? (
     <Link style={linkStyle} to={`/Species/${speciesId}`}>

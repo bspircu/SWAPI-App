@@ -8,15 +8,14 @@ import StarshipInsert from './ComponentLinks/StarshipsInsert';
 
 function CharacterInfo({ id }) {
   useEffect(() => {
+    const fetchCharacter = async () => {
+      const data = await fetcher(`https://swapi.co/api/people/${id}/`);
+      setCharacterInfo(data);
+    };
     fetchCharacter();
-  }, []);
+  }, [id]);
 
   const [characterInfo, setCharacterInfo] = useState(null);
-
-  const fetchCharacter = async () => {
-    const data = await fetcher(`https://swapi.co/api/people/${id}`);
-    setCharacterInfo(data);
-  };
 
   return characterInfo ? (
     <div>
@@ -35,31 +34,39 @@ function CharacterInfo({ id }) {
         <Homeworld url={characterInfo.homeworld} />
       </h1>
       <br />
-      <h1>
-        Vehicles:
-        {characterInfo.vehicles.map(vehicle => {
-          return <VehicleInsert key={vehicle} url={vehicle} />;
-        })}
-      </h1>
+      {characterInfo.vehicles.length > 0 && (
+        <h1>
+          Vehicles:
+          {characterInfo.vehicles.map(vehicle => {
+            return <VehicleInsert key={vehicle} url={vehicle} />;
+          })}
+        </h1>
+      )}
       <br />
-      <h1>
-        Starships:
-        {characterInfo.starships.map(starship => {
-          return <StarshipInsert key={starship} url={starship} />;
-        })}
-      </h1>
+      {characterInfo.starships.length > 0 && (
+        <h1>
+          Starships:
+          {characterInfo.starships.map(starship => {
+            return <StarshipInsert key={starship} url={starship} />;
+          })}
+        </h1>
+      )}
       <br />
-      <h1>
-        Films:
-        {characterInfo.films.map(film => {
-          return <FilmsInsert key={film} url={film} />;
-        })}
-      </h1>
+      {characterInfo.films.length > 0 && (
+        <h1>
+          Films:
+          {characterInfo.films.map(film => {
+            return <FilmsInsert key={film} url={film} />;
+          })}
+        </h1>
+      )}
       <br />
-      <h1>
-        Species:
-        <SpeciesInsert url={characterInfo.species} />
-      </h1>
+      {characterInfo.species.length > 0 && (
+        <h1>
+          Species:
+          <SpeciesInsert url={characterInfo.species} />
+        </h1>
+      )}
     </div>
   ) : (
     <h1>Loading...</h1>

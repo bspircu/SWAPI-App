@@ -8,15 +8,15 @@ import StarshipInsert from './ComponentLinks/StarshipsInsert';
 
 function FilmsInfo({ id }) {
   useEffect(() => {
+    const fetchFilms = async () => {
+      const data = await fetcher(`https://swapi.co/api/films/${id}/`);
+      setFilmInfo(data);
+    };
     fetchFilms();
-  }, []);
+  }, [id]);
 
   const [filmInfo, setFilmInfo] = useState(null);
 
-  const fetchFilms = async () => {
-    const data = await fetcher(`https://swapi.co/api/films/${id}`);
-    setFilmInfo(data);
-  };
   return filmInfo ? (
     <div>
       <h1>Title: {filmInfo.title}</h1>

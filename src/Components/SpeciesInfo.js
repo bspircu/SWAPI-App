@@ -6,15 +6,15 @@ import FilmsInsert from './ComponentLinks/FilmsInsert';
 
 function SpeciessInfo({ id }) {
   useEffect(() => {
+    const fetchSpecies = async () => {
+      const data = await fetcher(`https://swapi.co/api/species/${id}/`);
+      setSpeciesInfo(data);
+    };
     fetchSpecies();
-  }, []);
+  }, [id]);
 
   const [speciesInfo, setSpeciesInfo] = useState(null);
 
-  const fetchSpecies = async () => {
-    const data = await fetcher(`https://swapi.co/api/species/${id}`);
-    setSpeciesInfo(data);
-  };
   return speciesInfo ? (
     <div>
       <h1>Name: {speciesInfo.name}</h1>

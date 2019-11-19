@@ -5,15 +5,15 @@ import FilmsInsert from './ComponentLinks/FilmsInsert';
 
 function StarshipsInfo({ id }) {
   useEffect(() => {
+    const fetchStarship = async () => {
+      const data = await fetcher(`https://swapi.co/api/starships/${id}/`);
+      setStarshipInfo(data);
+    };
     fetchStarship();
-  }, []);
+  }, [id]);
 
   const [starshipInfo, setStarshipInfo] = useState(null);
 
-  const fetchStarship = async () => {
-    const data = await fetcher(`https://swapi.co/api/starships/${id}`);
-    setStarshipInfo(data);
-  };
   return starshipInfo ? (
     <div>
       <h1>Name: {starshipInfo.name}</h1>

@@ -11,13 +11,13 @@ function StarshipInsert({ url }) {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetcher(url);
+      setStarship(data);
+    }
     fetchData();
-  }, []);
+  }, [url]);
 
-  async function fetchData() {
-    const data = await fetcher(url);
-    setStarship(data);
-  }
   const starshipId = starship ? getId(starship) : null;
   return starship ? (
     <Link style={linkStyle} to={`/Starships/${starshipId}`}>

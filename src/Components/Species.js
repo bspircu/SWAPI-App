@@ -7,15 +7,14 @@ import { getId } from '../utilities';
 
 function Species() {
   useEffect(() => {
+    const fetchSpecies = async () => {
+      const data = await fetcher('https://swapi.co/api/species/');
+      augmentSpecies(data);
+    };
     fetchSpecies();
   }, []);
 
   const [allSpecies, setAllSpecies] = useState(null);
-
-  const fetchSpecies = async () => {
-    const data = await fetcher('https://swapi.co/api/species/');
-    augmentSpecies(data);
-  };
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.

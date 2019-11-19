@@ -5,15 +5,15 @@ import FilmsInsert from './ComponentLinks/FilmsInsert';
 
 function VehiclesInfo({ id }) {
   useEffect(() => {
+    const fetchVehicle = async () => {
+      const data = await fetcher(`https://swapi.co/api/vehicles/${id}/`);
+      setVehicleInfo(data);
+    };
     fetchVehicle();
-  }, []);
+  }, [id]);
 
   const [vehicleInfo, setVehicleInfo] = useState(null);
 
-  const fetchVehicle = async () => {
-    const data = await fetcher(`https://swapi.co/api/vehicles/${id}`);
-    setVehicleInfo(data);
-  };
   return vehicleInfo ? (
     <div>
       <h1>Name: {vehicleInfo.name}</h1>

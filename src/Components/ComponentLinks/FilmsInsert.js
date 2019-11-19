@@ -11,13 +11,13 @@ function FilmsInsert({ url }) {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetcher(url);
+      setFilm(data);
+    }
     fetchData();
-  }, []);
+  }, [url]);
 
-  async function fetchData() {
-    const data = await fetcher(url);
-    setFilm(data);
-  }
   const filmId = film ? getId(film) : null;
   return film ? (
     <Link style={linkStyle} to={`/Films/${filmId}`}>

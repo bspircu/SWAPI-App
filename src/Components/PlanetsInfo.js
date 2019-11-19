@@ -5,15 +5,15 @@ import CharacterInsert from './ComponentLinks/CharactersInsert';
 
 function PlanetsInfo({ id }) {
   useEffect(() => {
+    const fetchPlanet = async () => {
+      const data = await fetcher(`https://swapi.co/api/planets/${id}/`);
+      setPlanetInfo(data);
+    };
     fetchPlanet();
-  }, []);
+  }, [id]);
 
   const [planetInfo, setPlanetInfo] = useState(null);
 
-  const fetchPlanet = async () => {
-    const data = await fetcher(`https://swapi.co/api/planets/${id}`);
-    setPlanetInfo(data);
-  };
   return planetInfo ? (
     <div>
       <h1>Name: {planetInfo.name}</h1>
