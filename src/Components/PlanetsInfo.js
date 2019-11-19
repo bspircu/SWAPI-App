@@ -28,19 +28,23 @@ function PlanetsInfo({ id }) {
       <h1>Surface Water: {planetInfo.surface_water}%</h1>
       <h1>Terrain: {planetInfo.terrain}</h1>
       <br />
-      <h1>
-        Residents:
-        {planetInfo.residents.map(charecter => {
-          return <CharacterInsert key={charecter} url={charecter} />;
-        })}
-      </h1>
+      {planetInfo.residents.length > 0 && (
+        <h1>
+          Residents:
+          {planetInfo.residents.map(charecter => {
+            return <CharacterInsert key={charecter} url={charecter} />;
+          })}
+        </h1>
+      )}
       <br />
-      <h1>
-        Films:
-        {planetInfo.films.map(film => {
-          return <FilmsInsert key={film} url={film} />;
-        })}
-      </h1>
+      {planetInfo.films.length > 0 && (
+        <h1>
+          Films:
+          {planetInfo.films.map(film => {
+            return <FilmsInsert key={film} url={film} />;
+          })}
+        </h1>
+      )}
     </div>
   ) : (
     <h1>Loading...</h1>
