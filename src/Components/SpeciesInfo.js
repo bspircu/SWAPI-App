@@ -29,10 +29,12 @@ function SpeciessInfo({ id }) {
       <h1>Average Lifespan: {speciesInfo.average_lifespan} Years</h1>
       <h1>Average Height: {speciesInfo.average_height} Cm</h1>
       <br />
-      <h1>
-        Home World:
-        <Homeworld url={speciesInfo.homeworld} />
-      </h1>
+      {speciesInfo.homeworld && (
+        <h1>
+          Home World:
+          <Homeworld url={speciesInfo.homeworld} />
+        </h1>
+      )}
       <br />
       {speciesInfo.people.length > 0 && (
         <h1>
