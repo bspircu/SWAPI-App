@@ -33,7 +33,7 @@ function SpeciessInfo({ id }) {
         Home World:
         <Homeworld url={speciesInfo.homeworld} />
       </h1>
-      <brc />
+      <br />
       {speciesInfo.people.length > 0 && (
         <h1>
           Characters:
