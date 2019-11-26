@@ -30,12 +30,14 @@ function VehiclesInfo({ id }) {
       <h1>Max Atmosphering Speed: {vehicleInfo.max_atmosphering_speed}</h1>
       <h1>Cost In Credits: {vehicleInfo.cost_in_credits}</h1>
       <br />
-      <h1>
-        Pilots:
-        {vehicleInfo.pilots.map(character => {
-          return <CharacterInsert key={character} url={character} />;
-        })}
-      </h1>
+      {vehicleInfo.pilots.length > 0 && (
+        <h1>
+          Pilots:
+          {vehicleInfo.pilots.map(character => {
+            return <CharacterInsert key={character} url={character} />;
+          })}
+        </h1>
+      )}
       <br />
       <h1>
         Films:

@@ -32,12 +32,14 @@ function StarshipsInfo({ id }) {
       <h1>Hyperdrive Rating: {starshipInfo.hyperdrive_rating}</h1>
       <h1>Cost In Credits: {starshipInfo.cost_in_credits}</h1>
       <br />
-      <h1>
-        Pilots:
-        {starshipInfo.pilots.map(character => {
-          return <CharacterInsert key={character} url={character} />;
-        })}
-      </h1>
+      {starshipInfo.pilots.length > 0 && (
+        <h1>
+          Pilots:
+          {starshipInfo.pilots.map(character => {
+            return <CharacterInsert key={character} url={character} />;
+          })}
+        </h1>
+      )}
       <br />
       <h1>
         Films:
