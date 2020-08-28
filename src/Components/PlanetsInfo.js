@@ -6,7 +6,7 @@ import CharacterInsert from './ComponentLinks/CharactersInsert';
 function PlanetsInfo({ id }) {
   useEffect(() => {
     const fetchPlanet = async () => {
-      const data = await fetcher(`https://swapi.co/api/planets/${id}/`);
+      const data = await fetcher(`https://swapi.dev/api/planets/${id}/`);
       setPlanetInfo(data);
     };
     fetchPlanet();
@@ -31,7 +31,7 @@ function PlanetsInfo({ id }) {
       {planetInfo.residents.length > 0 && (
         <h1>
           Residents:
-          {planetInfo.residents.map(charecter => {
+          {planetInfo.residents.map((charecter) => {
             return <CharacterInsert key={charecter} url={charecter} />;
           })}
         </h1>
@@ -40,7 +40,7 @@ function PlanetsInfo({ id }) {
       {planetInfo.films.length > 0 && (
         <h1>
           Films:
-          {planetInfo.films.map(film => {
+          {planetInfo.films.map((film) => {
             return <FilmsInsert key={film} url={film} />;
           })}
         </h1>

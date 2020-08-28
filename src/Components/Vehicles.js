@@ -8,7 +8,7 @@ import { getId } from '../utilities';
 function Vehicles() {
   useEffect(() => {
     const fetchVehicles = async () => {
-      const data = await fetcher('https://swapi.co/api/vehicles/');
+      const data = await fetcher('https://swapi.dev/api/vehicles/');
       augmentVehicles(data);
     };
     fetchVehicles();
@@ -18,10 +18,10 @@ function Vehicles() {
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
-  const augmentVehicles = data => {
+  const augmentVehicles = (data) => {
     const dataWithIds = {
       ...data,
-      results: data.results.map(vehicles => {
+      results: data.results.map((vehicles) => {
         const id = getId(vehicles);
         return { ...vehicles, id };
       }),
@@ -46,7 +46,7 @@ function Vehicles() {
           {() =>
             allVehicles ? (
               [
-                ...allVehicles.results.map(vehicle => (
+                ...allVehicles.results.map((vehicle) => (
                   <h1 key={vehicle.url}>
                     <Link style={linkStyle} to={`/Vehicles/${vehicle.id}`}>
                       {vehicle.name}

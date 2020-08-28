@@ -6,7 +6,7 @@ import FilmsInsert from './ComponentLinks/FilmsInsert';
 function StarshipsInfo({ id }) {
   useEffect(() => {
     const fetchStarship = async () => {
-      const data = await fetcher(`https://swapi.co/api/starships/${id}/`);
+      const data = await fetcher(`https://swapi.dev/api/starships/${id}/`);
       setStarshipInfo(data);
     };
     fetchStarship();
@@ -35,7 +35,7 @@ function StarshipsInfo({ id }) {
       {starshipInfo.pilots.length > 0 && (
         <h1>
           Pilots:
-          {starshipInfo.pilots.map(character => {
+          {starshipInfo.pilots.map((character) => {
             return <CharacterInsert key={character} url={character} />;
           })}
         </h1>
@@ -43,7 +43,7 @@ function StarshipsInfo({ id }) {
       <br />
       <h1>
         Films:
-        {starshipInfo.films.map(film => {
+        {starshipInfo.films.map((film) => {
           return <FilmsInsert key={film} url={film} />;
         })}
       </h1>

@@ -7,7 +7,7 @@ import { getId } from '../utilities';
 function Films() {
   useEffect(() => {
     const fetchFilms = async () => {
-      const data = await fetcher('https://swapi.co/api/films/');
+      const data = await fetcher('https://swapi.dev/api/films/');
       augmentFilms(data);
     };
     fetchFilms();
@@ -17,10 +17,10 @@ function Films() {
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
-  const augmentFilms = data => {
+  const augmentFilms = (data) => {
     const dataWithIds = {
       ...data,
-      results: data.results.map(film => {
+      results: data.results.map((film) => {
         const id = getId(film);
         return { ...film, id };
       }),
@@ -44,7 +44,7 @@ function Films() {
         {() =>
           allFilms ? (
             [
-              ...allFilms.results.map(film => (
+              ...allFilms.results.map((film) => (
                 <h1 key={film.url}>
                   <Link style={linkStyle} to={`/Films/${film.id}`}>
                     {film.title}

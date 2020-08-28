@@ -6,7 +6,7 @@ import FilmsInsert from './ComponentLinks/FilmsInsert';
 function VehiclesInfo({ id }) {
   useEffect(() => {
     const fetchVehicle = async () => {
-      const data = await fetcher(`https://swapi.co/api/vehicles/${id}/`);
+      const data = await fetcher(`https://swapi.dev/api/vehicles/${id}/`);
       setVehicleInfo(data);
     };
     fetchVehicle();
@@ -33,7 +33,7 @@ function VehiclesInfo({ id }) {
       {vehicleInfo.pilots.length > 0 && (
         <h1>
           Pilots:
-          {vehicleInfo.pilots.map(character => {
+          {vehicleInfo.pilots.map((character) => {
             return <CharacterInsert key={character} url={character} />;
           })}
         </h1>
@@ -41,7 +41,7 @@ function VehiclesInfo({ id }) {
       <br />
       <h1>
         Films:
-        {vehicleInfo.films.map(film => {
+        {vehicleInfo.films.map((film) => {
           return <FilmsInsert key={film} url={film} />;
         })}
       </h1>

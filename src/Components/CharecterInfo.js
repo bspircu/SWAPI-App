@@ -9,7 +9,7 @@ import StarshipInsert from './ComponentLinks/StarshipsInsert';
 function CharacterInfo({ id }) {
   useEffect(() => {
     const fetchCharacter = async () => {
-      const data = await fetcher(`https://swapi.co/api/people/${id}/`);
+      const data = await fetcher(`https://swapi.dev/api/people/${id}/`);
       setCharacterInfo(data);
     };
     fetchCharacter();
@@ -27,7 +27,7 @@ function CharacterInfo({ id }) {
       <h1>Eye Color: {characterInfo.eye_color}</h1>
       <h1>Hair Color: {characterInfo.hair_color}</h1>
       <h1>Skin Color: {characterInfo.skin_color}</h1>
-      <h1>Brith Year: {characterInfo.birth_year}</h1>
+      <h1>Birth Year: {characterInfo.birth_year}</h1>
       <br />
       <h1>
         Home World:
@@ -37,7 +37,7 @@ function CharacterInfo({ id }) {
       {characterInfo.vehicles.length > 0 && (
         <h1>
           Vehicles:
-          {characterInfo.vehicles.map(vehicle => {
+          {characterInfo.vehicles.map((vehicle) => {
             return <VehicleInsert key={vehicle} url={vehicle} />;
           })}
         </h1>
@@ -46,7 +46,7 @@ function CharacterInfo({ id }) {
       {characterInfo.starships.length > 0 && (
         <h1>
           Starships:
-          {characterInfo.starships.map(starship => {
+          {characterInfo.starships.map((starship) => {
             return <StarshipInsert key={starship} url={starship} />;
           })}
         </h1>
@@ -55,7 +55,7 @@ function CharacterInfo({ id }) {
       {characterInfo.films.length > 0 && (
         <h1>
           Films:
-          {characterInfo.films.map(film => {
+          {characterInfo.films.map((film) => {
             return <FilmsInsert key={film} url={film} />;
           })}
         </h1>

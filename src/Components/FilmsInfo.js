@@ -9,7 +9,7 @@ import StarshipInsert from './ComponentLinks/StarshipsInsert';
 function FilmsInfo({ id }) {
   useEffect(() => {
     const fetchFilms = async () => {
-      const data = await fetcher(`https://swapi.co/api/films/${id}/`);
+      const data = await fetcher(`https://swapi.dev/api/films/${id}/`);
       setFilmInfo(data);
     };
     fetchFilms();
@@ -29,35 +29,35 @@ function FilmsInfo({ id }) {
       <br />
       <h1>
         Characters:
-        {filmInfo.characters.map(character => {
+        {filmInfo.characters.map((character) => {
           return <CharacterInsert key={character} url={character} />;
         })}
       </h1>
       <br />
       <h1>
         Planets:
-        {filmInfo.planets.map(planet => {
+        {filmInfo.planets.map((planet) => {
           return <Homeworld key={planet} url={planet} />;
         })}
       </h1>
       <br />
       <h1>
         Species:
-        {filmInfo.species.map(species => {
+        {filmInfo.species.map((species) => {
           return <SpeciesInsert key={species} url={species} />;
         })}
       </h1>
       <br />
       <h1>
         Starships:
-        {filmInfo.starships.map(starship => {
+        {filmInfo.starships.map((starship) => {
           return <StarshipInsert key={starship} url={starship} />;
         })}
       </h1>
       <br />
       <h1>
         Vehicles:
-        {filmInfo.vehicles.map(vehicle => {
+        {filmInfo.vehicles.map((vehicle) => {
           return <VehicleInsert key={vehicle} url={vehicle} />;
         })}
       </h1>

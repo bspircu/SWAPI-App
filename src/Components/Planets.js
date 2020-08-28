@@ -8,7 +8,7 @@ import { getId } from '../utilities';
 function Planets() {
   useEffect(() => {
     const fetchPlanets = async () => {
-      const data = await fetcher('https://swapi.co/api/planets/');
+      const data = await fetcher('https://swapi.dev/api/planets/');
       augmentPlanets(data);
     };
     fetchPlanets();
@@ -18,10 +18,10 @@ function Planets() {
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
-  const augmentPlanets = data => {
+  const augmentPlanets = (data) => {
     const dataWithIds = {
       ...data,
-      results: data.results.map(planet => {
+      results: data.results.map((planet) => {
         const id = getId(planet);
         return { ...planet, id };
       }),
@@ -45,7 +45,7 @@ function Planets() {
           {() =>
             allPlanets ? (
               [
-                ...allPlanets.results.map(planet => (
+                ...allPlanets.results.map((planet) => (
                   <h1 key={planet.url}>
                     <Link style={linkStyle} to={`/Planets/${planet.id}`}>
                       {planet.name}

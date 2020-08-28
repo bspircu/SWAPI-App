@@ -8,7 +8,7 @@ import { getId } from '../utilities';
 function Characters() {
   useEffect(() => {
     const fetchPeople = async () => {
-      const data = await fetcher('https://swapi.co/api/people/');
+      const data = await fetcher('https://swapi.dev/api/people/');
       augmentCharacters(data);
     };
     fetchPeople();
@@ -18,10 +18,10 @@ function Characters() {
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
-  const augmentCharacters = data => {
+  const augmentCharacters = (data) => {
     const dataWithIds = {
       ...data,
-      results: data.results.map(character => {
+      results: data.results.map((character) => {
         const id = getId(character);
         return { ...character, id };
       }),
@@ -45,7 +45,7 @@ function Characters() {
         {() =>
           allCharacters ? (
             [
-              ...allCharacters.results.map(person => (
+              ...allCharacters.results.map((person) => (
                 <h1 key={person.url}>
                   <Link style={linkStyle} to={`/Characters/${person.id}`}>
                     {person.name}
@@ -72,11 +72,11 @@ export default Characters;
 
 // alternative to pagination with multiple fetches on one page dynamically
 // const urls = [
-//   'https://swapi.co/api/people',
-//   'https://swapi.co/api/people/?page=2',
-//   'https://swapi.co/api/people/?page=3',
-//   'https://swapi.co/api/people/?page=4',
-//   'https://swapi.co/api/people/?page=5',
+//   'https://swapi.dev/api/people',
+//   'https://swapi.dev/api/people/?page=2',
+//   'https://swapi.dev/api/people/?page=3',
+//   'https://swapi.dev/api/people/?page=4',
+//   'https://swapi.dev/api/people/?page=5',
 // ];
 // const fetchPeople = async () => {
 //   const data = await Promise.all(urls.map(url => fetch(url)));

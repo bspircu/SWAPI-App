@@ -8,7 +8,7 @@ import { getId } from '../utilities';
 function Starships() {
   useEffect(() => {
     const fetchStarships = async () => {
-      const data = await fetcher('https://swapi.co/api/starships/');
+      const data = await fetcher('https://swapi.dev/api/starships/');
       augmentStarships(data);
     };
     fetchStarships();
@@ -18,10 +18,10 @@ function Starships() {
 
   // augmenter takes data and adds id prop based on url
   //makes pushing data into pagination component possible.
-  const augmentStarships = data => {
+  const augmentStarships = (data) => {
     const dataWithIds = {
       ...data,
-      results: data.results.map(starship => {
+      results: data.results.map((starship) => {
         const id = getId(starship);
         return { ...starship, id };
       }),
@@ -45,7 +45,7 @@ function Starships() {
           {() =>
             allStarships ? (
               [
-                ...allStarships.results.map(starship => (
+                ...allStarships.results.map((starship) => (
                   <h1 key={starship.url}>
                     <Link style={linkStyle} to={`/Starships/${starship.id}`}>
                       {starship.name}

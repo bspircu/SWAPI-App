@@ -7,7 +7,7 @@ import FilmsInsert from './ComponentLinks/FilmsInsert';
 function SpeciessInfo({ id }) {
   useEffect(() => {
     const fetchSpecies = async () => {
-      const data = await fetcher(`https://swapi.co/api/species/${id}/`);
+      const data = await fetcher(`https://swapi.dev/api/species/${id}/`);
       setSpeciesInfo(data);
     };
     fetchSpecies();
@@ -39,14 +39,14 @@ function SpeciessInfo({ id }) {
       {speciesInfo.people.length > 0 && (
         <h1>
           Characters:
-          {speciesInfo.people.map(character => {
+          {speciesInfo.people.map((character) => {
             return <CharacterInsert key={character} url={character} />;
           })}
         </h1>
       )}
       <h1>
         Films:
-        {speciesInfo.films.map(film => {
+        {speciesInfo.films.map((film) => {
           return <FilmsInsert key={film} url={film} />;
         })}
       </h1>
